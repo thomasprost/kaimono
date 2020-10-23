@@ -5,17 +5,16 @@ function Item(props) {
 
   const handleRemoveItem = (event) => {
     event.preventDefault();
-    props.setEditing(false);
     props.removeItem(item.id);
   };
 
   return (
     <li>
-      {item.name} - {item.quantity} -{" "}
+      {item.Name} - {item.Quantity} -{" "}
       <button
         className="button"
         onClick={() => {
-          props.editRow(item);
+          props.setEditingIndex(item.id);
         }}
       >
         Edit

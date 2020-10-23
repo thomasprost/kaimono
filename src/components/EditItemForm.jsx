@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function EditItemForm(props) {
-  const initialFormState = props.currentItem;
-  const [item, setItem] = useState(initialFormState);
+  const [item, setItem] = useState();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -11,41 +10,44 @@ function EditItemForm(props) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    props.updateItem(item.id, item);
+    props.updateItem(props.editingIndex, item);
+    props.setEditingIndex(null);
   };
 
   useEffect(() => {
-    setItem(props.currentItem);
-  }, [props]);
+    setItem(props.data.filter((i) => i.id === props.editingIndex)[0]);
+  }, []);
 
   return (
     <div>
       <h2>Edit an Item</h2>
-      <form onSubmit={handleFormSubmit}>
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={item.name}
-          onChange={handleInputChange}
-        />
-        <label>Quantity</label>
-        <input
-          type="text"
-          name="quantity"
-          value={item.quantity}
-          onChange={handleInputChange}
-        />
-        <label>Info</label>
-        <input
-          type="text"
-          name="info"
-          value={item.info}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleFormSubmit}>Update item</button>
-        <button onClick={() => props.setEditing(false)}>Cancel</button>
-      </form>
+      {item && (
+        <form onSubmit={handleFormSubmit}>
+          <label>Name</label>
+          <input
+            type="text"
+            name="Name"
+            value={item.Name}
+            onChange={handleInputChange}
+          />
+          <label>Quantity</label>
+          <input
+            type="text"
+            name="Quantity"
+            value={item.Quantity}
+            onChange={handleInputChange}
+          />
+          <label>Info</label>
+          <input
+            type="text"
+            name="Info"
+            value={item.Info}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleFormSubmit}>Update item</button>
+          <button onClick={() => props.setEditingIndex(null)}>Cancel</button>
+        </form>
+      )}
     </div>
   );
 }

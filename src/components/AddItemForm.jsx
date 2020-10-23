@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function AddItemForm(props) {
-  const initialFormState = { id: null, name: "", quantity: "", info: "" };
+  const initialFormState = { id: null, Name: "", Quantity: "", Info: "" };
   const [item, setItem] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -22,22 +22,22 @@ function AddItemForm(props) {
         <label>Name</label>
         <input
           type="text"
-          name="name"
-          value={item.name}
+          name="Name"
+          value={item.Name}
           onChange={handleInputChange}
         />
         <label>Quantity</label>
         <input
           type="text"
-          name="quantity"
-          value={item.quantity}
+          name="Quantity"
+          value={item.Quantity}
           onChange={handleInputChange}
         />
         <label>Info</label>
         <input
           type="text"
-          name="info"
-          value={item.info}
+          name="Info"
+          value={item.Info}
           onChange={handleInputChange}
         />
         <button onClick={handleFormSubmit}>Add item</button>

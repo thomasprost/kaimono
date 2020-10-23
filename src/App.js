@@ -5,48 +5,19 @@ import ShoppingList from "./components/ShoppingList";
 import People from "./components/People";
 import { useQuery } from "react-query";
 
-const fetchPeoples = async () => {
-  const res = await fetch("http://swapi.dev/api/people/");
+const fetchShoppingItems = async () => {
+  const res = await fetch("http://localhost:1337/shopping-items");
 
   return res.json();
 };
 
 function App() {
-  // Inital Data
-  const initialList = [
-    {
-      id: 1,
-      name: "banana",
-      quantity: "1 Pack",
-      info: null,
-    },
-    {
-      id: 2,
-      name: "apples",
-      quantity: "2",
-      info: "yellow ones",
-    },
-    {
-      id: 3,
-      name: "にんにく",
-      quantity: "1",
-      info: "国産",
-    },
-  ];
-  const initialFormState = { id: null, name: "", quantity: "", info: "" };
-
-  const { data, status } = useQuery("peoples", fetchPeoples);
+  const { data } = useQuery("peoples", fetchShoppingItems);
 
   // State Hooks
-  const [shoppingList, setList] = useState(initialList);
-  const [editing, setEditing] = useState(false);
-  const [currentItem, setCurrentItem] = useState(initialFormState);
-
-  const editRow = (item) => {
-    setEditing(true);
-
-    setCurrentItem({ id: item.id, name: item.name, quantity: item.quantity });
-  };
+  const [shoppingList, setList] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(null);
+  // const [currentItem, setCurrentItem] = useState(initialFormState);
 
   const addItem = (item) => {
     item.id = shoppingList.length + 1;
@@ -58,31 +29,40 @@ function App() {
   };
 
   const updateItem = (id, updatedItem) => {
-    setEditing(false);
-
-    setList(shoppingList.map((item) => (item.id === id ? updatedItem : item)));
+    setList(shoppingList.map((i) => (i.id === id ? updatedItem : i)));
   };
+
+  useEffect(() => {
+    if (data) {
+      setList(data);
+      console.log(shoppingList);
+    } else {
+      setList([]);
+    }
+  }, [data]);
 
   return (
     <div className="container">
       <header className="app-header">Yooo pelo</header>
       <div className="content">
-        <People data={data} status={status} />
+        {/* <People data={data} status={status} /> */}
         <ShoppingList
           list={shoppingList}
           removeItem={removeItem}
-          editRow={editRow}
-          setEditing={setEditing}
+          setEditingIndex={setEditingIndex}
         />
-        {editing ? (
-          <EditItemForm
-            currentItem={currentItem}
-            setEditing={setEditing}
-            updateItem={updateItem}
-          />
-        ) : (
-          <AddItemForm addItem={addItem} />
-        )}
+        {editingIndex !== null ? (
+          <>
+            <EditItemForm
+              data={shoppingList}
+              updateItem={updateItem}
+              editingIndex={editingIndex}
+              setEditingIndex={setEditingIndex}
+            />
+            <hr />
+          </>
+        ) : null}
+        <AddItemForm addItem={addItem} />
       </div>
     </div>
   );
