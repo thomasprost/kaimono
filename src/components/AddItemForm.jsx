@@ -1,7 +1,30 @@
 import React, { useState } from "react";
+import { useMutation, useQueryCache } from "react-query";
+
+const postItem = async (body) => {
+  const settings = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
 
 function AddItemForm(props) {
-  const initialFormState = { id: null, Name: "", Quantity: "", Info: "" };
+  const cache = useQueryCache();
+  const initialFormState = { Name: "", Quantity: "", Info: "" };
   const [item, setItem] = useState(initialFormState);
 
   const handleInputChange = (event) => {
@@ -11,9 +34,15 @@ function AddItemForm(props) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    props.addItem(item);
+    mutate(item);
     setItem(initialFormState);
   };
+
+  const [mutate, { status, error }] = useMutation(postItem, {
+    onSuccess: () => {
+      cache.invalidateQueries("shopping");
+    },
+  });
 
   return (
     <div>
