@@ -2,11 +2,37 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQueryCache, useQuery } from "react-query";
 
 const fetchItemById = async (key, { id }) => {
-  console.log(id);
 
   const res = await fetch(`http://localhost:1337/shopping-items/${id}`);
 
   return res.json();
+};
+
+const emptyItem = {
+  "Name" : "",
+  "Quantity": "",
+  "Info": ""
+}
+
+const patchItem = async (body) => {  
+  const settings = {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResponse = await fetch(
+      `http://localhost:1337/shopping-items/${body.id}`,
+      settings
+    );
+    const data = await fetchResponse.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
 };
 
 function EditItemForm({ editingIndex, setEditingIndex }) {
@@ -21,14 +47,23 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
     }
   );
 
-  const [item, setItem] = useState(data || {});
+  const [mutate, mutationState] = useMutation(patchItem, {
+    onSuccess: (data) => {
+      // Update `todos` and the individual todo queries when this mutation succeeds
+      cache.invalidateQueries("shopping");
+      cache.setQueryData(["item", { id: editingIndex }], data);
+      setEditingIndex(null);
+    },
+  });
+
+  const [item, setItem] = useState(data || emptyItem);
 
   useEffect(() => {
     if (editingIndex !== null && data) {
       setItem(data);
     } else {
-      setItem({});
-    }
+      setItem(emptyItem);
+    }    
   }, [data, editingIndex]);
 
   const handleInputChange = (event) => {
@@ -38,9 +73,9 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    setEditingIndex(null);
+    mutate(item);
   };
+
 
   return (
     <div>

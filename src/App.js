@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddItemForm from "./components/AddItemForm";
 import EditItemForm from "./components/EditItemForm";
 import ShoppingList from "./components/ShoppingList";
-import People from "./components/People";
-import { useQuery } from "react-query";
-
 // const fetchShoppingItems = async () => {
 //   const res = await fetch("http://localhost:1337/shopping-items");
 
