@@ -1,26 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQueryCache } from "react-query";
+import {postItem} from "../../Queries.js"
 
-const postItem = async (body) => {
-  const settings = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  };
-  try {
-    const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items`,
-      settings
-    );
-    const data = await fetchResponse.json();
-    return data;
-  } catch (e) {
-    return e;
-  }
-};
 
 function AddItemForm(props) {
   const cache = useQueryCache();

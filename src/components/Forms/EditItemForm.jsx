@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQueryCache, useQuery } from "react-query";
+import {fetchItemById, patchItem} from "../../Queries.js"
 
-const fetchItemById = async (key, { id }) => {
-
-  const res = await fetch(`http://localhost:1337/shopping-items/${id}`);
-
-  return res.json();
-};
 
 const emptyItem = {
   "Name" : "",
@@ -14,26 +9,7 @@ const emptyItem = {
   "Info": ""
 }
 
-const patchItem = async (body) => {  
-  const settings = {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  };
-  try {
-    const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items/${body.id}`,
-      settings
-    );
-    const data = await fetchResponse.json();
-    return data;
-  } catch (e) {
-    return e;
-  }
-};
+
 
 function EditItemForm({ editingIndex, setEditingIndex }) {
   const cache = useQueryCache();
@@ -49,7 +25,7 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
 
   const [mutate, mutationState] = useMutation(patchItem, {
     onSuccess: (data) => {
-      // Update `todos` and the individual todo queries when this mutation succeeds
+      // Update `items` query when this mutation succeeds
       cache.invalidateQueries("shopping");
       cache.setQueryData(["item", { id: editingIndex }], data);
       setEditingIndex(null);

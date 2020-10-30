@@ -1,25 +1,6 @@
 import React from "react";
 import { useMutation, useQueryCache } from "react-query";
-
-const deleteItem = async (id) => {
-  const settings = {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-  try {
-    const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items/${id}`,
-      settings
-    );
-    const data = await fetchResponse.json();
-    return data;
-  } catch (e) {
-    return e;
-  }
-};
+import {deleteItem} from "../Queries.js"
 
 function Item(props) {
   const cache = useQueryCache();
