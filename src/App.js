@@ -9,17 +9,23 @@ function App() {
     <div className="container">
       <div className="content">
         <h1 className="text-center">Shopping List</h1>
-        <ShoppingList setEditingIndex={setEditingIndex} />
-        {editingIndex !== null ? (
-          <>
-            <EditItemForm
-              editingIndex={editingIndex}
-              setEditingIndex={setEditingIndex}
-            />
-            <hr />
-          </>
-        ) : null}
-        <AddItemForm />
+        <div className="flex-row">
+          <div className="flex-large one-fourths">
+            <AddItemForm />
+          </div>
+          <div className="flex-large three-fourths">
+            <ShoppingList setEditingIndex={setEditingIndex} />
+            {editingIndex !== null ? (
+              <>
+                <EditItemForm
+                  editingIndex={editingIndex}
+                  setEditingIndex={setEditingIndex}
+                />
+                <hr />
+              </>
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   );

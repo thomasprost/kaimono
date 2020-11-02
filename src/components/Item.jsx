@@ -21,11 +21,12 @@ function Item(props) {
   return (
     <li>
       <div className="flex-row">
-        <div className="three-fourths">
+        <div className="flex-large three-fourths">
           {item.Name} - {item.Quantity} -{item.Info}
         </div>
-        <div className="one-fourths">
-          <span
+        <div className="flex-large one-fourths actions">
+          <button
+            className="muted-button"
             onClick={() => {
               props.setEditingIndex(item.id);
             }}
@@ -44,8 +45,8 @@ function Item(props) {
               <path d="M12 20h9"></path>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
             </svg>
-          </span>
-          <span onClick={handleRemoveItem}>
+          </button>
+          <button onClick={handleRemoveItem} className="muted-button">
             <svg
               viewBox="0 0 24 24"
               width="24"
@@ -55,7 +56,6 @@ function Item(props) {
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
-              
               className="css-i6dzq1"
             >
               <polyline points="3 6 5 6 21 6"></polyline>
@@ -63,11 +63,9 @@ function Item(props) {
               <line x1="10" y1="11" x2="10" y2="17"></line>
               <line x1="14" y1="11" x2="14" y2="17"></line>
             </svg>
-          </span>
+          </button>
         </div>
       </div>
-
-      <div className="actions"></div>
     </li>
   );
 }

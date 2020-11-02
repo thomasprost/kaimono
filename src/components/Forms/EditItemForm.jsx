@@ -75,8 +75,15 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
             value={item.Info}
             onChange={handleInputChange}
           />
-          <button onClick={handleFormSubmit}>Update item</button>
-          <button onClick={() => setEditingIndex(null)}>Cancel</button>
+          <button className="muted-button" onClick={handleFormSubmit}>
+            Update item
+          </button>
+          <button
+            className="muted-button"
+            onClick={() => setEditingIndex(null)}
+          >
+            Cancel
+          </button>
         </form>
       )}
     </div>
