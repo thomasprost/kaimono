@@ -7,8 +7,8 @@ function App() {
   const [editingIndex, setEditingIndex] = useState(null);
   return (
     <div className="container">
-      <header className="app-header">Yooo pelo</header>
       <div className="content">
+        <h1 className="text-center">Shopping List</h1>
         <ShoppingList setEditingIndex={setEditingIndex} />
         {editingIndex !== null ? (
           <>

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQueryCache, useQuery } from "react-query";
-import {fetchItemById, patchItem} from "../../Queries.js"
-
+import { fetchItemById, patchItem } from "../../Queries.js";
 
 const emptyItem = {
-  "Name" : "",
-  "Quantity": "",
-  "Info": ""
-}
-
-
+  Name: "",
+  Quantity: "",
+  Info: "",
+};
 
 function EditItemForm({ editingIndex, setEditingIndex }) {
   const cache = useQueryCache();
@@ -39,7 +36,7 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
       setItem(data);
     } else {
       setItem(emptyItem);
-    }    
+    }
   }, [data, editingIndex]);
 
   const handleInputChange = (event) => {
@@ -51,7 +48,6 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
     event.preventDefault();
     mutate(item);
   };
-
 
   return (
     <div>

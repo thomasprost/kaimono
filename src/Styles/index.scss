@@ -1,0 +1,42 @@
+//==============================================================================
+// Configuration
+//==============================================================================
+
+@import "~primitive-ui/src/scss/base/variables";
+@import "~primitive-ui/src/scss/base/mixins";
+
+//==============================================================================
+// Reset
+//==============================================================================
+
+@import "~primitive-ui/src/scss/base/normalize";
+@import "~primitive-ui/src/scss/base/reset";
+
+//==============================================================================
+// Components
+//==============================================================================
+
+@import "~primitive-ui/src/scss/components/scaffolding";
+@import "~primitive-ui/src/scss/components/grid";
+@import "~primitive-ui/src/scss/components/helpers";
+@import "~primitive-ui/src/scss/components/buttons";
+@import "~primitive-ui/src/scss/components/forms";
+@import "~primitive-ui/src/scss/components/tables";
+@import "~primitive-ui/src/scss/components/navigation";
+@import "~primitive-ui/src/scss/components/layout";
+
+//==============================================================================
+// Shopping App
+//==============================================================================
+
+ul {
+  padding-left: 0;
+  li {
+    list-style: none;
+
+    .actions {
+      display: flex;
+      margin-left: 10px;
+    }
+  }
+}

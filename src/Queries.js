@@ -20,13 +20,12 @@ export const postItem = async (body) => {
 };
 
 export const fetchItemById = async (key, { id }) => {
-
   const res = await fetch(`http://localhost:1337/shopping-items/${id}`);
 
   return res.json();
 };
 
-export const patchItem = async (body) => {  
+export const patchItem = async (body) => {
   const settings = {
     method: "PUT",
     headers: {
@@ -46,7 +45,6 @@ export const patchItem = async (body) => {
     return e;
   }
 };
-
 
 export const deleteItem = async (id) => {
   const settings = {

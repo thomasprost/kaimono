@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 const fetchShoppingItems = async () => {
   const res = await fetch("http://localhost:1337/shopping-items");
 
-  return res.json();
+  return res.json(); 
 };
 
 function ShoppingList(props) {
@@ -16,7 +16,6 @@ function ShoppingList(props) {
 
   return (
     <div id="item-list">
-      <h2>Shopping List :</h2>
       {status === "loading" ? (
         <span>Loading...</span>
       ) : status === "error" ? (
@@ -26,7 +25,7 @@ function ShoppingList(props) {
           <button onClick={() => refetch()}>Retry</button>
         </span>
       ) : (
-        <div id="item-list">
+        <ul>
           {data
             ? data.map((item) => {
                 return (
@@ -38,7 +37,7 @@ function ShoppingList(props) {
                 );
               })
             : "Empty list"}
-        </div>
+        </ul>
       )}
     </div>
   );

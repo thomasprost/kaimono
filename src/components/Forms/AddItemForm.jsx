@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQueryCache } from "react-query";
-import {postItem} from "../../Queries.js"
-
+import { postItem } from "../../Queries.js";
 
 function AddItemForm(props) {
   const cache = useQueryCache();
