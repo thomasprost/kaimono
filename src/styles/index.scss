@@ -2,7 +2,8 @@
 // Configuration
 //==============================================================================
 
-@import "~primitive-ui/src/scss/base/variables";
+// @import "~primitive-ui/src/scss/base/variables";
+@import "./base/variables";
 @import "~primitive-ui/src/scss/base/mixins";
 
 //==============================================================================
@@ -33,6 +34,7 @@ ul {
   padding-left: 0;
   li {
     list-style: none;
+    text-transform: capitalize;
 
     .actions {
       display: flex;

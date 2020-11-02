@@ -26,7 +26,6 @@ function Item(props) {
         </div>
         <div className="flex-large one-fourths actions">
           <button
-            className="muted-button"
             onClick={() => {
               props.setEditingIndex(item.id);
             }}
@@ -46,7 +45,7 @@ function Item(props) {
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
             </svg>
           </button>
-          <button onClick={handleRemoveItem} className="muted-button">
+          <button onClick={handleRemoveItem}>
             <svg
               viewBox="0 0 24 24"
               width="24"

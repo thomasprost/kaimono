@@ -21,7 +21,6 @@ function App() {
                   editingIndex={editingIndex}
                   setEditingIndex={setEditingIndex}
                 />
-                <hr />
               </>
             ) : null}
           </div>

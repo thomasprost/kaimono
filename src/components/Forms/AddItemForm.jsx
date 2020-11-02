@@ -49,9 +49,7 @@ function AddItemForm(props) {
           value={item.Info}
           onChange={handleInputChange}
         />
-        <button className="muted-button" onClick={handleFormSubmit}>
-          Add item
-        </button>
+        <button onClick={handleFormSubmit}>Add item</button>
       </form>
     </div>
   );
