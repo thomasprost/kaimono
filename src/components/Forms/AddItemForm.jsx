@@ -49,6 +49,7 @@ function AddItemForm(props) {
           value={item.Info}
           onChange={handleInputChange}
         />
+        <br />
         <button onClick={handleFormSubmit}>Add item</button>
       </form>
     </div>

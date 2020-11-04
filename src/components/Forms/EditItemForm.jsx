@@ -50,7 +50,7 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
   };
 
   return (
-    <div>
+    <>
       <h2>Edit an Item</h2>
       {item && (
         <form onSubmit={handleFormSubmit}>
@@ -75,11 +75,14 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
             value={item.Info}
             onChange={handleInputChange}
           />
-          <button onClick={handleFormSubmit}>Update item</button>
-          <button onClick={() => setEditingIndex(null)}>Cancel</button>
+          <br />
+          <div className="edit-actions">
+            <button onClick={handleFormSubmit}>Update item</button>
+            <button onClick={() => setEditingIndex(null)}>Cancel</button>
+          </div>
         </form>
       )}
-    </div>
+    </>
   );
 }
 

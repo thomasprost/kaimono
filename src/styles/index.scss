@@ -23,13 +23,51 @@
 @import "~primitive-ui/src/scss/components/buttons";
 @import "~primitive-ui/src/scss/components/forms";
 @import "~primitive-ui/src/scss/components/tables";
-@import "~primitive-ui/src/scss/components/navigation";
-@import "~primitive-ui/src/scss/components/layout";
 
 //==============================================================================
 // Shopping App
 //==============================================================================
 
+[type="color"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="email"],
+[type="month"],
+[type="number"],
+[type="password"],
+[type="search"],
+[type="tel"],
+[type="text"],
+[type="url"],
+[type="week"],
+[type="time"],
+select,
+textarea {
+  color: white;
+}
+
+#main-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+#logo {
+  width: 33px;
+  margin-right: 6px;
+}
+
+.side-menu {
+  border-right: 1px solid $primary-color;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+// Shopping List
 ul {
   padding-left: 0;
   li {
@@ -38,7 +76,24 @@ ul {
 
     .actions {
       display: flex;
-      margin-left: 10px;
+      button {
+        margin-left: 10px;
+      }
     }
+  }
+}
+
+// Edit Form specific
+.edit-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+//Responsive
+
+@media only screen and (max-width: $desktop) {
+  .side-menu {
+    order: 2;
+    border: none;
   }
 }
