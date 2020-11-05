@@ -26,6 +26,7 @@ function AddItemForm(props) {
 
   return (
     <div>
+      <div>{status}</div>
       <h2>Add an Item</h2>
       <form onSubmit={handleFormSubmit}>
         <label>Name</label>

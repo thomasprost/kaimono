@@ -1,10 +1,10 @@
 import React from "react";
 import Item from "./Item";
 import { useQuery } from "react-query";
+import { BoardMessagesLoader } from "./ItemLoader";
 
 const fetchShoppingItems = async () => {
   const res = await fetch("http://localhost:1337/shopping-items");
-
   return res.json();
 };
 
@@ -17,7 +17,7 @@ function ShoppingList(props) {
   return (
     <div id="items-list">
       {status === "loading" ? (
-        <span>Loading...</span>
+        <BoardMessagesLoader />
       ) : status === "error" ? (
         <span>
           Error: {error.message}
@@ -36,7 +36,7 @@ function ShoppingList(props) {
                   ></Item>
                 );
               })
-            : "Empty list"}
+            : "Nothing to buy"}
         </ul>
       )}
     </div>
