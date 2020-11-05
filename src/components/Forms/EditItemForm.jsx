@@ -12,15 +12,11 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
   const cache = useQueryCache();
 
   // Don't attempt to query until editingIndex is truthy
-  const { status, data, isFetching, error, failureCount, refetch } = useQuery(
-    ["item", { id: editingIndex }],
-    fetchItemById,
-    {
-      enabled: editingIndex !== null,
-    }
-  );
+  const { data } = useQuery(["item", { id: editingIndex }], fetchItemById, {
+    enabled: editingIndex !== null,
+  });
 
-  const [mutate, mutationState] = useMutation(patchItem, {
+  const [mutate] = useMutation(patchItem, {
     onSuccess: (data) => {
       // Update `items` query when this mutation succeeds
       cache.invalidateQueries("shopping");
@@ -51,7 +47,7 @@ function EditItemForm({ editingIndex, setEditingIndex }) {
 
   return (
     <>
-      <h2>Edit an Item</h2>
+      <h2>Editing {item.Name}</h2>
       {item && (
         <form onSubmit={handleFormSubmit}>
           <label>Name</label>

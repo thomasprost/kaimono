@@ -31,6 +31,7 @@ function Item(props) {
 
   return (
     <li className="flex-row">
+      {error && <div className="error">{error.message}</div>}
       <div className="flex-large three-fourths">
         <div className="form-check">
           <label className="form-check-label">

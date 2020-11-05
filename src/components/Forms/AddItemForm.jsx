@@ -18,7 +18,7 @@ function AddItemForm(props) {
     setItem(initialFormState);
   };
 
-  const [mutate, { status, error }] = useMutation(postItem, {
+  const [mutate, { error }] = useMutation(postItem, {
     onSuccess: () => {
       cache.invalidateQueries("shopping");
     },
@@ -26,7 +26,7 @@ function AddItemForm(props) {
 
   return (
     <div>
-      <div>{status}</div>
+      {error && <div className="error">{error.message}</div>}
       <h2>Add an Item</h2>
       <form onSubmit={handleFormSubmit}>
         <label>Name</label>
