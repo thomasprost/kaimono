@@ -68,18 +68,135 @@ textarea {
 }
 
 // Shopping List
-ul {
-  padding-left: 0;
-  li {
-    list-style: none;
-    text-transform: capitalize;
+#items-list {
+  ul {
+    padding-left: 0;
+    li {
+      list-style: none;
+      text-transform: capitalize;
+      margin: 15px 0;
+      position: relative;
+      padding-bottom: 12px;
+      align-items: end;
 
-    .actions {
-      display: flex;
-      button {
-        margin-left: 10px;
+      &::after {
+        position: absolute;
+        width: calc(100% - 1rem);
+        height: 1px;
+        background: $primary-color;
+        left: 1rem;
+        bottom: 0;
+        content: "";
+      }
+
+      p {
+        margin-bottom: 4px;
+
+        &.small {
+          margin: 0;
+          font-size: 0.8rem;
+          color: rgba($primary-color, 0.8);
+        }
+      }
+
+      .actions {
+        display: flex;
+        justify-content: end;
+        button {
+          margin: 0 0 0 10px;
+          height: min-content;
+          padding: 12px 21px;
+        }
       }
     }
+  }
+
+  .form-check {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 0;
+  }
+
+  .form-check .form-check-label {
+    min-height: 18px;
+    display: block;
+    margin-left: 2rem;
+    line-height: 1.5;
+  }
+  .form-check .form-check-label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    margin-top: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 30px;
+    height: 30px;
+  }
+  .form-check .form-check-label input[type="checkbox"] + .input-frame:before,
+  .form-check .form-check-label input[type="checkbox"] + .input-frame:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .form-check .form-check-label input[type="checkbox"] + .input-frame:before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    border: solid $primary-color;
+    border-width: 2px;
+    transition: all;
+    transition-duration: 0s;
+    transition-duration: 250ms;
+  }
+  .form-check .form-check-label input[type="checkbox"] + .input-frame:after {
+    transition: all;
+    transition-duration: 0s;
+    transition-duration: 250ms;
+    content: "✓";
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: scale(0);
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: $primary-color;
+  }
+  .form-check
+    .form-check-label
+    input[type="checkbox"]:checked
+    + .input-frame:before {
+    background: transparent;
+  }
+  .form-check
+    .form-check-label
+    input[type="checkbox"]:checked
+    + .input-frame:after {
+    width: 25px;
+    opacity: 1;
+    line-height: 25px;
+    filter: alpha(opacity=100);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+  .form-check
+    .form-check-label
+    input[type="checkbox"]:disabled
+    + .input-frame:before {
+    border-color: #e8ebf1;
+  }
+  .form-check
+    .form-check-label
+    input[type="checkbox"]:disabled:checked
+    + .input-frame:after {
+    background: #e8ebf1;
+    color: #ffffff;
   }
 }
 

@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 const fetchShoppingItems = async () => {
   const res = await fetch("http://localhost:1337/shopping-items");
 
-  return res.json(); 
+  return res.json();
 };
 
 function ShoppingList(props) {
@@ -15,7 +15,7 @@ function ShoppingList(props) {
   );
 
   return (
-    <div id="item-list">
+    <div id="items-list">
       {status === "loading" ? (
         <span>Loading...</span>
       ) : status === "error" ? (
