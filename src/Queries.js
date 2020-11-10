@@ -1,3 +1,4 @@
+const apiUrl = process.env.REACT_APP_API_URL;
 export const postItem = async (body) => {
   const settings = {
     method: "POST",
@@ -8,10 +9,7 @@ export const postItem = async (body) => {
     body: JSON.stringify(body),
   };
   try {
-    const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items`,
-      settings
-    );
+    const fetchResponse = await fetch(`${apiUrl}shopping-items`, settings);
     const data = await fetchResponse.json();
     return data;
   } catch (e) {
@@ -20,7 +18,7 @@ export const postItem = async (body) => {
 };
 
 export const fetchItemById = async (key, { id }) => {
-  const res = await fetch(`http://localhost:1337/shopping-items/${id}`);
+  const res = await fetch(`${apiUrl}shopping-items/${id}`);
 
   return res.json();
 };
@@ -36,7 +34,7 @@ export const patchItem = async (body) => {
   };
   try {
     const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items/${body.id}`,
+      `${apiUrl}shopping-items/${body.id}`,
       settings
     );
     const data = await fetchResponse.json();
@@ -56,7 +54,7 @@ export const deleteItem = async (id) => {
   };
   try {
     const fetchResponse = await fetch(
-      `http://localhost:1337/shopping-items/${id}`,
+      `${apiUrl}shopping-items/${id}`,
       settings
     );
     const data = await fetchResponse.json();
