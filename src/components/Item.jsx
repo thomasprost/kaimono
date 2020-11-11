@@ -1,6 +1,5 @@
 import React from "react";
 import { useMutation, useQueryCache } from "react-query";
-import { useState } from "react";
 import { deleteItem, patchItem } from "../Queries.js";
 
 function Item(props) {
@@ -13,13 +12,13 @@ function Item(props) {
     props.setEditingIndex(null);
   };
 
-  const [mutate, { status, error }] = useMutation(deleteItem, {
+  const [mutate, { error }] = useMutation(deleteItem, {
     onSuccess: () => {
       cache.invalidateQueries("shopping");
     },
   });
 
-  const [mutatePatch, mutationstate] = useMutation(patchItem, {
+  const [mutatePatch] = useMutation(patchItem, {
     onSuccess: () => {
       cache.invalidateQueries("shopping");
     },
