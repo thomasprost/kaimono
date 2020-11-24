@@ -1,4 +1,15 @@
 const apiUrl = process.env.REACT_APP_API_URL;
+
+// Fetch All
+
+// Fetch One
+export const fetchItemById = async (key, { id }) => {
+  const res = await fetch(`${apiUrl}shopping-items/${id}`);
+
+  return res.json();
+};
+
+// Create
 export const postItem = async (body) => {
   const settings = {
     method: "POST",
@@ -17,12 +28,7 @@ export const postItem = async (body) => {
   }
 };
 
-export const fetchItemById = async (key, { id }) => {
-  const res = await fetch(`${apiUrl}shopping-items/${id}`);
-
-  return res.json();
-};
-
+// Update
 export const patchItem = async (body) => {
   const settings = {
     method: "PUT",
@@ -44,6 +50,7 @@ export const patchItem = async (body) => {
   }
 };
 
+// Delete
 export const deleteItem = async (id) => {
   const settings = {
     method: "DELETE",
