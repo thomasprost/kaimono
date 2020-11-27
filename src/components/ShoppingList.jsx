@@ -2,11 +2,7 @@ import React from "react";
 import Item from "./Item";
 import { useQuery } from "react-query";
 import { BoardMessagesLoader } from "./ItemLoader";
-
-const fetchShoppingItems = async () => {
-  const res = await fetch("http://localhost:1337/shopping-items");
-  return res.json();
-};
+import { fetchShoppingItems } from "../Queries";
 
 function ShoppingList(props) {
   const { status, data, error, refetch } = useQuery(
@@ -26,7 +22,7 @@ function ShoppingList(props) {
         </span>
       ) : (
         <ul>
-          {data
+          {data && data.length > 0
             ? data.map((item) => {
                 return (
                   <Item

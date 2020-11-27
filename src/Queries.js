@@ -2,6 +2,13 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 // Fetch All
 
+export const fetchShoppingItems = async () => {
+  const res = await fetch(`${apiUrl}shopping-items`);
+  console.log(res);
+
+  return res.json();
+};
+
 // Fetch One
 export const fetchItemById = async (key, { id }) => {
   const res = await fetch(`${apiUrl}shopping-items/${id}`);
